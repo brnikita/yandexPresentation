@@ -26,7 +26,7 @@ input::-moz-focus-inner /*Remove button padding in FF*/
 #slide-wrapper{
     width:1024px;
     height:768px;
-    background:#8fb0f3;
+    background:#58a3dc;
     color:#fff;
     font:16px Arial;
     text-align:center;
@@ -40,5 +40,12 @@ input::-moz-focus-inner /*Remove button padding in FF*/
     padding:20px 0;
 }
 #slide-wrapper ul{
-    list-style:disc outside;
+    margin:0 auto;
+    padding-left:40px;
+    width:160px;
+    text-align:left;
+    list-style:disc inside;
+}
+#slide-wrapper li{
+    padding-bottom:10px;
 }
