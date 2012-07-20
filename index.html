@@ -5,26 +5,100 @@
     <meta charset="UTF-8">
     <title>Yandex Presentation</title>
     <link rel="stylesheet" type="text/css" media=screen href="/css/screen.css">
-    <script type="text/javascript" scr="/js/jquery.1.7.2.js"></script>
-    <script>
+    <!--[if IE]>
+        <style>
+            #presentation-thumbnails iframe{
+                zoom:0.2;
+            }
+        </style>
+    <![endif]-->
+    <script type="text/javascript" src="/js/jquery.1.7.2.js"></script>
+    <script type="text/javascript">
         $(document).ready(function(){
-            console.log($("iframe").contents().height());
+            $("iframe").load(windowResize());
+
+            function iframeZoom(zoom){
+                var iframe = $("#presentation-main iframe");
+                if($.browser.msie) iframe.css({"zoom": zoom});
+                else{
+                    iframe.css({"-moz-transform":"scale(" + zoom + ")",
+                        "-o-transform":"scale(" + zoom + ")",
+                        "-webkit-transform":"scale(" + zoom + ")"});
+                }
+                iframe.parent(".iframe-wrapper").css({"width":(1024*zoom).toFixed(0),"height":(768*zoom).toFixed(0)});
+            }
+            function windowResize(){
+                var height = $(window).height()-40;
+                var width = $(window).width()-285;
+                var zoomHeight = Math.floor((height/768)*100)/100;
+                var zoomWidth = Math.floor((width/1024)*100)/100;
+                var zoom = 1;
+                (zoomHeight >= zoomWidth)? zoom = zoomWidth : zoom = zoomHeight;
+                if (zoom > 0.2) iframeZoom(zoom);
+                if(height > 170) $("#presentation-thumbnails").css({"height":height});
+            };
+
+            $(window).resize(function(){
+                windowResize();
+            });
+
+            $("#presentation-thumbnails a").click(function(){
+                $("#presentation-main").html($(this).siblings(".iframe-wrapper").clone());
+                windowResize();
+                return false;
+            });
+
         });
+
     </script>
 </head>
 <body>
-    <ul id="presentation-thumbnails">
-        <li>
-            <iframe src="/slides/slide1.html" frameborder="0"></iframe>
-        </li>
-        <li>
-            <iframe src="/slides/slide2.html" frameborder="0"></iframe>
-        </li>
-        <li>
-            <iframe src="/slides/slide3.html" frameborder="0"></iframe>
-        </li>
-    </ul>
-    <iframe id="presentation-main" src="/slides/slide1.html" frameborder="0" resize="noresize" wmode="opaque"></iframe>
-    <div class="clear"></div>
+    <div id="main">
+        <ul id="presentation-thumbnails">
+            <li>
+                <a href="#"></a>
+                <div class="iframe-wrapper">
+                    <iframe src="/slides/slide1.html" frameborder="0" width="1024" height="768"></iframe>
+                </div>
+            </li>
+            <li>
+                <a href="#"></a>
+                <div class="iframe-wrapper">
+                    <iframe src="/slides/slide2.html" frameborder="0" width="1024" height="768"></iframe>
+                </div>
+            </li>
+            <li>
+                <a href="#"></a>
+                <div class="iframe-wrapper">
+                    <iframe src="/slides/slide3.html" frameborder="0" width="1024" height="768"></iframe>
+                </div>
+            </li>
+            <li>
+                <a href="#"></a>
+                <div class="iframe-wrapper">
+                    <iframe src="/slides/slide1.html" frameborder="0" width="1024" height="768"></iframe>
+                </div>
+            </li>
+            <li>
+                <a href="#"></a>
+                <div class="iframe-wrapper">
+                    <iframe src="/slides/slide2.html" frameborder="0" width="1024" height="768"></iframe>
+                </div>
+            </li>
+            <li>
+                <a href="#"></a>
+                <div class="iframe-wrapper">
+                    <iframe src="/slides/slide3.html" frameborder="0" width="1024" height="768"></iframe>
+                </div>
+            </li>
+        </ul>
+        <div id="presentation-main">
+            <div class="iframe-wrapper">
+                <iframe src="/slides/slide1.html" frameborder="0" width="1024" height="768"></iframe>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
 </body>
 </html>

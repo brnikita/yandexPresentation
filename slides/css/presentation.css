@@ -8,17 +8,37 @@ a{
 img{
     border:none;
 }
-ul,li{
+ul{
     list-style:none;
 }
 .clear{
     clear:both;
+}
+h1{
+    font-size:36px;
+    padding-bottom:15px;
 }
 input::-moz-focus-inner /*Remove button padding in FF*/
 {
     border: 0;
     padding: 0;
 }
-body{
-    backgroud:#
+#slide-wrapper{
+    width:1024px;
+    height:768px;
+    background:#8fb0f3;
+    color:#fff;
+    font:16px Arial;
+    text-align:center;
+    vertical-align:middle;
+    display:table-cell;
+}
+#slide-wrapper table{
+    margin:0 auto;
+}
+#slide-wrapper td{
+    padding:20px 0;
+}
+#slide-wrapper ul{
+    list-style:disc outside;
 }

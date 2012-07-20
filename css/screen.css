@@ -6,7 +6,7 @@ html{
     height:100%;
 }
 body{
-    min-height:100%;
+    height:100%;
 }
 a{
     outline:none;
@@ -17,6 +17,11 @@ img{
 ul,li{
     list-style:none;
 }
+iframe{
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+}
 .clear{
     clear:both;
 }
@@ -25,11 +30,51 @@ input::-moz-focus-inner /*Remove button padding in FF*/
     border: 0;
     padding: 0;
 }
+#main{
+    padding:20px;
+    min-width:470px;
+    min-height:170px;
+}
+.iframe-wrapper{
+    overflow:hidden;
+}
 #presentation-thumbnails{
     float:left;
-    width:25%;
+    height:100%;
+    overflow-y:scroll;
+    padding-right:10px;
+
+}
+#presentation-thumbnails li{
+    padding-bottom:10px;
+    position:relative;
+}
+#presentation-thumbnails a{
+    display:block;
+    position:absolute;
+    width:205px;
+    height:154px;
+    z-index:2;
+    background:rgba(255,255,255,0.4);
+}
+#presentation-thumbnails a:hover{
+    background:rgba(255,255,255,0);
+}
+#presentation-thumbnails iframe{
+    /*zoom:0.5;*/
+    -moz-transform: scale(0.2);
+    -o-transform: scale(0.2);
+    -webkit-transform: scale(0.2);
+}
+#presentation-thumbnails .iframe-wrapper{
+    width:205px;
+    height:154px;
 }
 #presentation-main{
     float:left;
-    width:50%;
+    padding-left:20px;
+}
+
+#presentation-main .iframe-wrapper{
+    margin-right:-1000px;
 }
